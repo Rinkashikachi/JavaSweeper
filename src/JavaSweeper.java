@@ -18,7 +18,13 @@ public class JavaSweeper extends JFrame{
     }
 
     private void initPanel(){
-        panel = new JPanel();
+        panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(getImage("bomb"),0,0,this);
+            }
+        };
         panel.setPreferredSize(new Dimension(
                 COLUMNS*IMAGE_SIZE,ROWS*IMAGE_SIZE));
         add(panel);
