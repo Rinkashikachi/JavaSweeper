@@ -19,7 +19,8 @@ public class JavaSweeper extends JFrame{
 
     private void initPanel(){
         panel = new JPanel();
-        panel.setPreferredSize(new Dimension(COLUMNS*IMAGE_SIZE,ROWS*IMAGE_SIZE));
+        panel.setPreferredSize(new Dimension(
+                COLUMNS*IMAGE_SIZE,ROWS*IMAGE_SIZE));
         add(panel);
     }
 
@@ -29,5 +30,11 @@ public class JavaSweeper extends JFrame{
         setTitle("JavaSweeper");
         setResizable(false);
         setLocationRelativeTo(null);
+    }
+
+    private Image getImage(String name){
+        String filename = "img/" + name + ".png";
+        ImageIcon icon = new ImageIcon(getClass().getResource(filename));
+        return icon.getImage();
     }
 }
