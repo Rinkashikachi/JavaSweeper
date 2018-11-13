@@ -27,6 +27,7 @@ public class JavaSweeper extends JFrame{
         game = new Game(COLUMNS, ROWS, BOMBS);
         game.start();
         setImages();
+        initLabel();
         initPanel();
         initFrame();
     }
@@ -54,6 +55,7 @@ public class JavaSweeper extends JFrame{
                     game.rightButtonPressed(coord);
                 if (e.getButton() == MouseEvent.BUTTON2)
                     game.start();
+                label.setText(getMessage());
                 panel.repaint();
             }
         });
@@ -72,6 +74,11 @@ public class JavaSweeper extends JFrame{
         setIconImage(getImage("icon"));
     }
 
+    private void initLabel(){
+        label = new JLabel("Welcome!");
+        add(label, BorderLayout.SOUTH);
+    }
+
     private Image getImage(String name){
         String filename = "img/" + name + ".png";
         ImageIcon icon = new ImageIcon(getClass().getResource(filename));
@@ -81,5 +88,14 @@ public class JavaSweeper extends JFrame{
     private void setImages(){
         for (Box box : Box.values())
             box.image = getImage(box.name());
+    }
+
+    private String getMessage(){
+        switch (game.getState()){
+            case PLAYING: return "Think twice!";
+            case BOMBED: return "Bad luck!";
+            case WON: return "Congratulations!";
+            default: return "Welcome!";
+        }
     }
 }
