@@ -1,21 +1,18 @@
 package ru.rinkashikachi.sweeper;
 
 public class Game {
-    Matrix bombMap;
+    private Bomb bombs;
 
     public void start(){
-        bombMap = new Matrix(Box.ZERO);
-        bombMap.set(new Coords(0,0), Box.BOMB);
-        bombMap.set(new Coords(0,1), Box.NUM1);
-        bombMap.set(new Coords(1,0), Box.NUM1);
-        bombMap.set(new Coords(1,1), Box.NUM1);
+        bombs.start();
     }
 
-    public Game(int cols, int rows){
+    public Game(int cols, int rows, int bombNumber){
         Ranges.setSize(new Coords(cols, rows));
+        bombs = new Bomb(bombNumber);
     }
 
     public Box getBox(Coords coord){
-        return bombMap.get(coord);
+        return bombs.get(coord);
     }
 }
